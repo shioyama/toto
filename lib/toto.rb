@@ -5,6 +5,7 @@ require 'rack'
 require 'digest'
 require 'open-uri'
 require 'coderay'
+require 'coderay_bash'
 
 if RUBY_PLATFORM =~ /win32/
   require 'maruku'
@@ -47,7 +48,7 @@ module Toto
         else
           type = $1.to_sym
         end
-        substitute_additional_colors CodeRay.scan($2, type).html(:wrap => :div, :bold_every => false, :line_numbers => false, :css => :class)
+        substitute_additional_colors CodeRay.scan($2, type).div(:line_numbers => false)
       end
     end
 
