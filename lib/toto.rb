@@ -308,7 +308,8 @@ module Toto
     end
 
     def url
-      "http://#{(@config[:url].sub("http://", '') + self.path).squeeze('/')}"
+      protocol = @config[:url] =~ /^https\:\/\// ? "https://" : "http://"
+      "#{protocol}#{(@config[:url].sub(protocol, '') + self.path).squeeze('/')}"
     end
     alias :permalink url
 
